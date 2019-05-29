@@ -115,12 +115,12 @@ nodo_t * DE(nodo_t *nodo)
 	return(nodo);
 }
 
-void imprime(nodo_t *nodo) 
+void imprime(nodo_t *nodo, int profundidade) 
 {       
 	if(nodo!=NULL) {	
-		imprime(nodo->esq);
-		printf("chave: %d, altura: %d\n",nodo->chave, nodo->altura);
-		imprime(nodo->dir);
+		imprime(nodo->esq, profundidade +1);
+		printf("chave: %d, profundidade: %d\n",nodo->chave, profundidade);
+		imprime(nodo->dir, profundidade +1);
 	}
 }
 
@@ -216,16 +216,55 @@ nodo_t * deleta(nodo_t* nodo,int deleta_chave)
 int main() {
     
     nodo_t *raiz = NULL;    
-     
-    raiz = insere(raiz, 5);    
+    int valor, op;
+	char arg;
+
+	while(scanf("%c", &arg) != -1) {
+		if(arg = 'i') {
+			op = 1;
+			scanf("%d", &valor);
+		}
+		if(arg = 'r') {
+			op = 2;
+			scanf("%d", &valor);
+		}
+		switch (op)
+		{
+			case 1: //insere
+			insere(raiz, valor);
+				
+				break;
+			case 2:
+				/* code */
+				break;
+		
+			default:
+				break;
+		}
+	}
+
+	imprime(raiz, 0);
+/* 	scanf("%c", &ch);
+	printf("leu %c\n", ch);
+	scanf("%d", &in);
+	printf("leu %d\n", in);
+	scanf("%c", &ch);
+	printf("leu %c\n", ch);
+	scanf("%c", &ch);
+	printf("leu %c\n", ch) */;
+
+
+
+   /*  raiz = insere(raiz, 5);    
     raiz = insere(raiz, 4);
     raiz = insere(raiz, 3);
     raiz = insere(raiz, 2);
     raiz = insere(raiz, 1);
-    imprime(raiz);
+    imprime(raiz,0);
 
     printf("\n");
     raiz = deleta(raiz, 5);
-    imprime(raiz);
-    return 0;
+    imprime(raiz, 0); */
+
+	
 }
